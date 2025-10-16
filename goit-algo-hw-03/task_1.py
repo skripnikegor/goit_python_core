@@ -47,7 +47,7 @@ def get_days_from_today(date: str) -> int:
         quantity of days between today and entered date, 0 if the date is incorrect.
 
     Raises:
-        if date has wrong format or type return 0.
+        if date has wrong format/value/empty string.
     """
     try:
         converted_date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
@@ -56,9 +56,10 @@ def get_days_from_today(date: str) -> int:
         return 0
 
     
-
-res = get_days_from_today("2021-10-09")
-res2 = get_days_from_today("2026-10-09")
-res3 = get_days_from_today("asjdhasd")
-res4 = get_days_from_today(12312)
-print(res, res2, res3, res4)
+# Tests
+test1 = get_days_from_today("2021-10-09")
+test2 = get_days_from_today("2026-10-09")
+test3 = get_days_from_today("asjdhasd")
+test4 = get_days_from_today(12312)
+test5 = get_days_from_today("")
+print(f"{test1=}", f"{test2=}", f"{test3=}", f"{test4=}", f"{test5=}", sep="\n")
