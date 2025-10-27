@@ -52,7 +52,7 @@ def get_days_from_today(date: str) -> int:
     try:
         converted_date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
         return (datetime.datetime.now().date() - converted_date).days
-    except ValueError, TypeError:
+    except (ValueError, TypeError):
         return 0
 
     

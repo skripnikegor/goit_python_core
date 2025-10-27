@@ -69,7 +69,7 @@ def get_numbers_ticket(min: int, max: int, quantity: int) ->list:
     if not isinstance(quantity, int) or not isinstance(min, int) or not isinstance(max, int):
         # raise TypeError("The quantity must be integer.")
         return []
-    if min < 1 or max >= 1000 or min < quantity > max or min >= max:
+    if min < 1 or max >= 1000 or min < quantity > max or min >= max or ((max - min) < quantity):
         # raise ValueError("Wrong range or quantity")
         return []
 
@@ -101,3 +101,6 @@ print(f"{test5=}")
 
 test6 = get_numbers_ticket(1, 5, 7)
 print(f"{test6=}")
+
+test7 = get_numbers_ticket(10, 14, 7)
+print(f"{test7=}")
