@@ -54,21 +54,30 @@ def total_salary(path: str) -> str:
         string with salary data.
 
     Raises:
-        if date has wrong format/value/empty string.
+        if path/data wrong returns an empty string.
     """
+    if not path:
+        return ""
+
     try:
         # Open file and read data from it
         with open(path, mode="r", encoding="utf-8") as data:
             # Read all lines from file
             lines = data.readlines()
             # Create array of salaries from data
-            salaries = [float(line.split(",")[-1]) for line in lines]
+            try:
+                salaries = [float(line.split(",")[-1]) for line in lines]
+            except:
+                print("Wrong data in the file.")
+                return ""
             # Return string
             return f"Загальна сума заробітної плати: {sum(salaries):.0f}, Середня заробітна плата: {sum(salaries) / len(salaries):.0f}"
     except FileNotFoundError:
         print("File does not exist in the script directory")
+        return ""
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+        return ""
 
 
 # Tests
