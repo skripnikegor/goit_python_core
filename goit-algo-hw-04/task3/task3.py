@@ -46,14 +46,50 @@ python hw03.py /шлях/до/вашої/директорії
 скрипт повинен вивести схожу структуру:
 
 """
-import sys, pathlib, colorama
+import sys, colorama
+from pathlib import Path
+
+def get_files_from_path(filename: str) -> list:
+    """
+    
+    
+    """
+    directory = Path(filename)
+    if not directory.exists() or not directory.is_dir():
+        pass
+    result = []
+    for way in directory.iterdir():
+        result.append(str(way.name))
+        if way.is_dir():
+            result.append(get_files_from_path(way))
+    return result
+
+def render(files, indent=0):
+    text = ""
+    for f in files:
+        if isinstance(f, str):
+            text += "    " * indent + f + "\n"
+        elif isinstance(f, list):
+            # рекурсивный вызов для вложенных списков
+            text += render(f, indent + 1)
+    return text
+
+
+def get_files_from_directory(filename: str) -> str:
+    """"
+    
+    
+    
+    """
+
+    files = get_files_from_path(filename)
+    return render(files)
 
 
 
 
+# if __name__ == "__taks3__":
+#     pass
 
-
-
-
-if __name__ == "__main__":
-    pass
+files = get_files_from_directory("C:/Users/yskrypnyk/Desktop")
+print(files)
